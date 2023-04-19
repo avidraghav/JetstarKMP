@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.application")
     id("org.jetbrains.compose")
+    id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
 }
 
 kotlin {
