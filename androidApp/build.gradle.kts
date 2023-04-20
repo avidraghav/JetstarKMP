@@ -5,6 +5,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
 }
 
+val koinVersion = "3.2.0"
 kotlin {
     android()
     sourceSets {

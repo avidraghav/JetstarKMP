@@ -6,6 +6,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.compose")
     id("com.github.gmazzo.buildconfig")
+    kotlin("plugin.serialization") version "1.8.20"
 }
 
 kotlin {
@@ -31,6 +32,7 @@ kotlin {
 
     val coroutinesVersion = "1.6.4"
     val ktorVersion = "2.2.4"
+    val koinVersion = "3.2.0"
 
     sourceSets {
         val commonMain by getting {
@@ -45,6 +47,10 @@ kotlin {
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
+
+                implementation("io.insert-koin:koin-core:$koinVersion")
+                implementation("io.insert-koin:koin-test:$koinVersion")
             }
         }
         val androidMain by getting {
@@ -53,6 +59,7 @@ kotlin {
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.9.0")
 
+                implementation("io.insert-koin:koin-android:$koinVersion")
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
             }
         }
