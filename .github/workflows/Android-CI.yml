@@ -19,6 +19,13 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
+      - name: Create local.properties
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          touch local.properties
+          echo "API_KEY=${{ env.API_KEY }}" > local.properties
+
       - name: Ktlint check
         run: ./gradlew ktlintCheck
 
