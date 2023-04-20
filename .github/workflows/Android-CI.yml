@@ -25,6 +25,7 @@ jobs:
         run: |
           touch local.properties
           echo "API_KEY=${{ env.API_KEY }}" > local.properties
+          chmod +x ./gradlew
 
       - name: Ktlint check
         run: ./gradlew ktlintCheck
