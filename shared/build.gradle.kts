@@ -7,6 +7,7 @@ plugins {
     id("org.jetbrains.compose")
     id("com.github.gmazzo.buildconfig")
     kotlin("plugin.serialization") version "1.8.20"
+    id("kotlin-parcelize")
 }
 
 kotlin {
@@ -25,6 +26,9 @@ kotlin {
         framework {
             baseName = "shared"
             isStatic = true
+            export("com.arkivanov.decompose:decompose:2.0.0-compose-experimental-alpha-02")
+            export("com.arkivanov.decompose:extensions-compose-jetbrains:2.0.0-compose-experimental-alpha-02")
+            export("com.arkivanov.essenty:parcelable:1.1.0")
         }
         extraSpecAttributes["resources"] =
             "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
@@ -48,9 +52,11 @@ kotlin {
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
-
                 implementation("io.insert-koin:koin-core:$koinVersion")
                 implementation("io.insert-koin:koin-test:$koinVersion")
+                api("com.arkivanov.decompose:decompose:2.0.0-compose-experimental-alpha-02")
+                api("com.arkivanov.decompose:extensions-compose-jetbrains:2.0.0-compose-experimental-alpha-02")
+                api("com.arkivanov.essenty:parcelable:1.1.0")
             }
         }
         val androidMain by getting {
@@ -80,7 +86,7 @@ kotlin {
 
 android {
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
-    namespace = "com.raghav.jetstar.android"
+    namespace = "com.raghav.jetstar.common"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     sourceSets["main"].res.srcDirs("src/androidMain/res")
