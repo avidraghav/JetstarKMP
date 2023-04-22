@@ -21,16 +21,12 @@ fun App() {
             animation = stackAnimation(slide())
         ) { screen ->
             when (screen) {
-                is AppNavigator.MovieDetail -> {
-//                    DetailsScreen(
-//                        movie = screen.detail,
-//                        router = router
-//                    )
+                is AppNavigator.MediaDetail -> {
                 }
                 AppNavigator.HomeScreen -> {
                     HomeScreen(
                         onMovieSelected = {
-                            router.push(AppNavigator.MovieDetail(it))
+                            router.push(AppNavigator.MediaDetail(it))
                         },
                         router = router
                     )

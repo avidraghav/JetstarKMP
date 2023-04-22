@@ -30,18 +30,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.raghav.jetstar.domain.entity.Movie
+import com.raghav.jetstar.domain.entity.trending.TrendingMedia
 import com.raghav.jetstar.router.AppNavigator
 import com.raghav.jetstar.router.Router
 import com.raghav.jetstar.router.rememberViewModel
-import com.raghav.jetstar.ui.HomeState
+import com.raghav.jetstar.ui.HomeScreenState
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun HomeScreen(
     router: Router<AppNavigator>,
     modifier: Modifier = Modifier,
-    onMovieSelected: (Movie) -> Unit = {}
+    onMovieSelected: (TrendingMedia) -> Unit = {}
 ) {
     val viewModel: HomeScreenVM =
         rememberViewModel(HomeScreenVM::class) { savedState -> HomeScreenVM(savedState) }
@@ -61,8 +61,8 @@ fun HomeScreen(
 
 @Composable
 fun HomeContent(
-    state: HomeState,
-    onMovieSelected: (Movie) -> Unit = {},
+    state: HomeScreenState,
+    onMovieSelected: (TrendingMedia) -> Unit = {},
     onRetryClick: () -> Unit = {}
 ) {
     if (state.isLoading) {
@@ -72,7 +72,8 @@ fun HomeContent(
             )
         }
     } else if (state.isErrorWithMessage.second) {
-        ErrorScreen(onRetryClick = onRetryClick)
+        println(state.isErrorWithMessage.first?.message.toString())
+        ErrorScreen(state.isErrorWithMessage.first?.message.toString(), onRetryClick = onRetryClick)
     } else {
         val scaffoldState = rememberScaffoldState()
         Scaffold(
@@ -101,17 +102,17 @@ fun HomeContent(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    items(state.movies.size) { index ->
-                        val item = state.movies[index]
+                    items(state.media?.size ?: 0) { index ->
+                        val item = state.media?.get(index)
                         Column(
                             modifier = Modifier.clickable {
-                                onMovieSelected(item)
+                                onMovieSelected(item!!)
                             }
                         ) {
                             Text(
                                 modifier = Modifier
                                     .padding(32.dp),
-                                text = "${item.id} - ${item.overview}"
+                                text = "${item?.id} - ${item?.overview}"
                             )
                         }
                     }
@@ -123,14 +124,14 @@ fun HomeContent(
 }
 
 @Composable
-fun ErrorScreen(onRetryClick: () -> Unit = {}) {
+fun ErrorScreen(message: String, onRetryClick: () -> Unit = {}) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Something went wrong. Please try again!",
+            text = message,
             textAlign = TextAlign.Center,
             fontSize = 20.sp,
             modifier = Modifier.fillMaxWidth(),

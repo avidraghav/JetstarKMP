@@ -14,6 +14,7 @@ kotlin {
             dependencies {
                 implementation(project(":shared"))
                 implementation("com.arkivanov.decompose:decompose:2.0.0-compose-experimental-alpha-02")
+                implementation("io.ktor:ktor-client-cio:2.0.3")
             }
         }
     }

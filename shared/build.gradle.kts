@@ -49,9 +49,9 @@ kotlin {
 
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-                implementation("io.ktor:ktor-client-logging:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:2.0.3")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:2.0.3")
+                implementation("io.ktor:ktor-client-logging:2.0.3")
                 implementation("io.insert-koin:koin-core:$koinVersion")
                 implementation("io.insert-koin:koin-test:$koinVersion")
                 api("com.arkivanov.decompose:decompose:2.0.0-compose-experimental-alpha-02")
@@ -66,7 +66,7 @@ kotlin {
                 api("androidx.core:core-ktx:1.9.0")
 
                 implementation("io.insert-koin:koin-android:$koinVersion")
-                implementation("io.ktor:ktor-client-android:$ktorVersion")
+//                implementation("io.ktor:ktor-client-android:$ktorVersion")
             }
         }
         val iosX64Main by getting
