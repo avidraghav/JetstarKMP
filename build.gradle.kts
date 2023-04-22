@@ -6,4 +6,5 @@ plugins {
     id("com.android.library").apply(false)
     id("org.jetbrains.compose").apply(false)
     id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
+    id("com.github.gmazzo.buildconfig") apply false
 }

@@ -1,8 +1,12 @@
+import java.util.Properties
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.compose")
+    id("com.github.gmazzo.buildconfig")
+    kotlin("plugin.serialization") version "1.8.20"
 }
 
 kotlin {
@@ -22,8 +26,13 @@ kotlin {
             baseName = "shared"
             isStatic = true
         }
-        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
+        extraSpecAttributes["resources"] =
+            "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
     }
+
+    val coroutinesVersion = "1.6.4"
+    val ktorVersion = "2.2.4"
+    val koinVersion = "3.2.0"
 
     sourceSets {
         val commonMain by getting {
@@ -33,6 +42,15 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
+
+                implementation("io.insert-koin:koin-core:$koinVersion")
+                implementation("io.insert-koin:koin-test:$koinVersion")
             }
         }
         val androidMain by getting {
@@ -40,6 +58,9 @@ kotlin {
                 api("androidx.activity:activity-compose:1.6.1")
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.9.0")
+
+                implementation("io.insert-koin:koin-android:$koinVersion")
+                implementation("io.ktor:ktor-client-android:$ktorVersion")
             }
         }
         val iosX64Main by getting
@@ -50,6 +71,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+            }
         }
     }
 }
@@ -73,4 +97,11 @@ android {
     kotlin {
         jvmToolchain(11)
     }
+}
+
+val properties = Properties()
+properties.load(project.rootProject.file("local.properties").inputStream())
+
+buildConfig {
+    buildConfigField("String", "API_KEY", "\"${properties.getProperty("API_KEY")}\"")
 }
