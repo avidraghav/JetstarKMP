@@ -37,6 +37,7 @@ kotlin {
     val coroutinesVersion = "1.6.4"
     val ktorVersion = "2.2.4"
     val koinVersion = "3.2.0"
+    val napierVersion = "2.6.1"
 
     sourceSets {
         val commonMain by getting {
@@ -57,6 +58,7 @@ kotlin {
                 api("com.arkivanov.decompose:decompose:2.0.0-compose-experimental-alpha-02")
                 api("com.arkivanov.decompose:extensions-compose-jetbrains:2.0.0-compose-experimental-alpha-02")
                 api("com.arkivanov.essenty:parcelable:1.1.0")
+                implementation("io.github.aakira:napier:$napierVersion")
             }
         }
         val androidMain by getting {
