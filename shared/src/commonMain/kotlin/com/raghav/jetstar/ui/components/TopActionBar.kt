@@ -1,4 +1,4 @@
-package com.raghav.jetstar.ui
+package com.raghav.jetstar.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -7,8 +7,8 @@ import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
@@ -40,10 +40,7 @@ fun TopActionBar(
                     )
                 }
                 IconButton(onClick = { onJetstarIconClicked() }) {
-                    Icon(
-                        imageVector = Icons.Default.Face,
-                        contentDescription = null
-                    )
+                    Text(text = "Jetstar")
                 }
             }
             if (showSearchIcon) {
@@ -57,21 +54,3 @@ fun TopActionBar(
         }
     }
 }
-
-// TopAppBar(
-// title = {
-//    IconButton(onClick = {}) {
-//        Icon(imageVector = Icons.Default.Menu, contentDescription = null)
-//    }
-// },
-// backgroundColor = MaterialTheme.colors.background.copy(alpha = 0.6f),
-// contentColor = MaterialTheme.colors.onBackground,
-// navigationIcon = {
-//    if (showSearchIcon) {
-//        IconButton(onClick = {}) {
-//            Icon(imageVector = Icons.Default.Search, contentDescription = null)
-//        }
-//    }
-// },
-// modifier = modifier
-// )

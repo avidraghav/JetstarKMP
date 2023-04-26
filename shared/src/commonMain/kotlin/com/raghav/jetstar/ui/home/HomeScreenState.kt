@@ -6,7 +6,13 @@ import com.raghav.jetstar.domain.entity.trending.TrendingMedia
 
 @Parcelize
 data class HomeScreenState constructor(
-    val media: List<TrendingMedia> = emptyList(),
+    val trendingMovies: List<TrendingMedia> = emptyList(),
+    val popularMovies: List<TrendingMedia> = emptyList(),
+    val topRatedMovies: List<TrendingMedia> = emptyList(),
+    val nowPlayingMovies: List<TrendingMedia> = emptyList(),
     val isLoading: Boolean = false,
-    val isErrorWithMessage: Pair<Exception?, Boolean> = Pair(null, false)
+    val errorLoadingTrending: Exception? = null,
+    val errorLoadingPopular: Exception? = null,
+    val errorLoadingTopRated: Exception? = null,
+    val errorLoadingNowPlaying: Exception? = null
 ) : Parcelable

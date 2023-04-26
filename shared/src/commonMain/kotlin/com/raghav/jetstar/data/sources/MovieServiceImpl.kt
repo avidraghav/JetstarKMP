@@ -12,7 +12,7 @@ import io.ktor.client.request.url
 class MovieServiceImpl(
     private val client: HttpClient
 ) : MovieService {
-    override suspend fun getTrendingMedia(): Resource<TrendingMediaResponseDto> =
+    override suspend fun getTrending(): Resource<TrendingMediaResponseDto> =
         safeApiCallHandler {
             client
                 .get {
@@ -21,4 +21,33 @@ class MovieServiceImpl(
                     }
                 }
         }
+
+    override suspend fun getPopular(): Resource<TrendingMediaResponseDto> =
+        safeApiCallHandler {
+            client
+                .get {
+                    url {
+                        url(Constants.ENDPOINT_POPULAR)
+                    }
+                }
+        }
+
+    override suspend fun getTopRated(): Resource<TrendingMediaResponseDto> =
+        safeApiCallHandler {
+            client
+                .get {
+                    url {
+                        url(Constants.ENDPOINT_TOP_RATED)
+                    }
+                }
+        }
+
+    override suspend fun getNowPlaying(): Resource<TrendingMediaResponseDto> = safeApiCallHandler {
+        client
+            .get {
+                url {
+                    url(Constants.ENDPOINT_NOW_PLAYING)
+                }
+            }
+    }
 }

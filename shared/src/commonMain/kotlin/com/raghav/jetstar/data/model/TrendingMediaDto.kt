@@ -3,6 +3,7 @@ package com.raghav.jetstar.data.model
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.raghav.jetstar.domain.entity.trending.TrendingMedia
+import com.raghav.jetstar.util.Constants
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -51,7 +52,7 @@ data class TrendingMediaDto(
 
 fun TrendingMediaDto.toDomain(): TrendingMedia = TrendingMedia(
     adult = adult,
-    backdropPath = backdropPath,
+    backdropPath = Constants.IMAGE_BASE_URL_W500 + backdropPath,
     firstAirDate = firstAirDate,
     genreIds = genreIds,
     id = id,

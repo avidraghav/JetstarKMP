@@ -1,9 +1,11 @@
 package com.raghav.jetstar.ui.home
 
 import com.raghav.jetstar.data.repository.HomeScreenRepositoryImpl
+import com.raghav.jetstar.domain.entity.trending.TrendingMedia
 import com.raghav.jetstar.router.SavedStateHandle
 import com.raghav.jetstar.router.ViewModel
 import com.raghav.jetstar.util.Resource
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,25 +22,100 @@ class HomeScreenVM(private val savedState: SavedStateHandle) : ViewModel() {
     val state: StateFlow<HomeScreenState> = _state.asStateFlow()
 
     init {
-        getTopRatedMovies()
+        fetchHomeScreenData()
         saveStateUpdates()
     }
 
-    fun getTopRatedMovies() {
-        launch {
-            _state.update { it.copy(isLoading = true, isErrorWithMessage = Pair(null, false)) }
-            val response = repository.getTopRatedMovies()
+    fun fetchHomeScreenData() {
+        var popularMovies = emptyList<TrendingMedia>()
+        var trendingMovies = emptyList<TrendingMedia>()
+        var topRatedMovies = emptyList<TrendingMedia>()
+        var nowPlayingMovies = emptyList<TrendingMedia>()
+        _state.update {
+            it.copy(
+                isLoading = true
+            )
+        }
+        launch(SupervisorJob()) {
             _state.update { it.copy(isLoading = false) }
-            when (response) {
-                is Resource.Error -> {
-                    _state.update { it.copy(isErrorWithMessage = Pair(response.exception, true)) }
-                }
-                is Resource.Success -> {
-                    _state.update {
-                        it.copy(
-                            media = response.data.results?.filterNotNull() ?: emptyList()
-                        )
+            launch {
+                when (val response = repository.getPopularMovies()) {
+                    is Resource.Error -> {
+                        _state.update {
+                            it.copy(
+                                errorLoadingPopular = response.exception
+                            )
+                        }
                     }
+                    is Resource.Success -> {
+                        popularMovies = response.data.results?.filterNotNull() ?: emptyList()
+                    }
+                }
+            }.invokeOnCompletion {
+                _state.update {
+                    it.copy(
+                        popularMovies = popularMovies
+                    )
+                }
+            }
+            launch {
+                when (val response = repository.getTrendingMovies()) {
+                    is Resource.Error -> {
+                        _state.update {
+                            it.copy(
+                                errorLoadingTrending = response.exception
+                            )
+                        }
+                    }
+                    is Resource.Success -> {
+                        trendingMovies = response.data.results?.filterNotNull() ?: emptyList()
+                    }
+                }
+            }.invokeOnCompletion {
+                _state.update {
+                    it.copy(
+                        trendingMovies = trendingMovies
+                    )
+                }
+            }
+            launch {
+                when (val response = repository.getTopRatedMovies()) {
+                    is Resource.Error -> {
+                        _state.update {
+                            it.copy(
+                                errorLoadingTopRated = response.exception
+                            )
+                        }
+                    }
+                    is Resource.Success -> {
+                        topRatedMovies = response.data.results?.filterNotNull() ?: emptyList()
+                    }
+                }
+            }.invokeOnCompletion {
+                _state.update {
+                    it.copy(
+                        topRatedMovies = topRatedMovies
+                    )
+                }
+            }
+            launch {
+                when (val response = repository.getNowPlayingMovies()) {
+                    is Resource.Error -> {
+                        _state.update {
+                            it.copy(
+                                errorLoadingNowPlaying = response.exception
+                            )
+                        }
+                    }
+                    is Resource.Success -> {
+                        nowPlayingMovies = response.data.results?.filterNotNull() ?: emptyList()
+                    }
+                }
+            }.invokeOnCompletion {
+                _state.update {
+                    it.copy(
+                        nowPlayingMovies = nowPlayingMovies
+                    )
                 }
             }
         }

@@ -5,5 +5,8 @@ import com.raghav.jetstar.util.Resource
 
 interface HomeScreenRepository {
 
+    suspend fun getPopularMovies(): Resource<TrendingMediaResponse>
+    suspend fun getTrendingMovies(): Resource<TrendingMediaResponse>
     suspend fun getTopRatedMovies(): Resource<TrendingMediaResponse>
+    suspend fun getNowPlayingMovies(): Resource<TrendingMediaResponse>
 }
