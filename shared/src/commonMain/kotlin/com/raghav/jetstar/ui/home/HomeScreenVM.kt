@@ -1,6 +1,6 @@
 package com.raghav.jetstar.ui.home
 
-import com.raghav.jetstar.data.repository.MovieRepositoryImpl
+import com.raghav.jetstar.data.repository.HomeScreenRepositoryImpl
 import com.raghav.jetstar.router.SavedStateHandle
 import com.raghav.jetstar.router.ViewModel
 import com.raghav.jetstar.util.Resource
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.inject
 
 class HomeScreenVM(private val savedState: SavedStateHandle) : ViewModel() {
-    private val repository: MovieRepositoryImpl by inject()
+    private val repository: HomeScreenRepositoryImpl by inject()
 
     private val _state: MutableStateFlow<HomeScreenState> =
         MutableStateFlow(savedState.get() ?: HomeScreenState())

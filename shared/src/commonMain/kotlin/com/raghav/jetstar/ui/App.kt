@@ -38,7 +38,7 @@ fun App() {
                         }
                         AppNavigator.HomeScreen -> {
                             HomeScreen(
-                                onMovieSelected = {
+                                onMediaSelected = {
                                     router.push(AppNavigator.MediaDetail(it))
                                 },
                                 router = router

@@ -1,6 +1,7 @@
 package com.raghav.jetstar.ui.home
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,7 +36,7 @@ import com.raghav.jetstar.ui.spacing
 fun HomeScreen(
     router: Router<AppNavigator>,
     modifier: Modifier = Modifier,
-    onMovieSelected: (TrendingMedia) -> Unit = {}
+    onMediaSelected: (TrendingMedia) -> Unit = {}
 ) {
     val viewModel: HomeScreenVM =
         rememberViewModel(HomeScreenVM::class) { savedState -> HomeScreenVM(savedState) }
@@ -46,7 +47,7 @@ fun HomeScreen(
 
     HomeContent(
         state = state.value,
-        onMediaSelected = onMovieSelected,
+        onMediaSelected = onMediaSelected,
         onRetryClick = {
             viewModel.getTopRatedMovies()
         },
@@ -100,7 +101,45 @@ fun HomeContent(
 //            modifier = Modifier.fillMaxSize()
 //        )
 
-        HomeCarousel(title = "Title", media = state.media)
+        TrendingMediaCarousel(title = "Title", media = state.media) { media ->
+            onMediaSelected(media)
+        }
+    }
+}
+
+@Composable
+fun TrendingMediaCarousel(
+    title: String,
+    media: List<TrendingMedia>,
+    modifier: Modifier = Modifier,
+    onMediaSelected: (TrendingMedia) -> Unit
+) {
+    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        Text(text = title, Modifier.padding(start = MaterialTheme.spacing.medium))
+        LazyRow(
+            Modifier.padding(start = MaterialTheme.spacing.medium)
+        ) {
+            items(items = media) {
+                TrendingMediaItem(it) { item ->
+                    onMediaSelected(item)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun TrendingMediaItem(
+    item: TrendingMedia,
+    modifier: Modifier = Modifier,
+    onItemSelected: (TrendingMedia) -> Unit
+) {
+    Card(
+        modifier.size(160.dp).padding(end = MaterialTheme.spacing.small).clickable {
+            onItemSelected(item)
+        }
+    ) {
+        Text(item.title.toString())
     }
 }
 
@@ -129,24 +168,5 @@ fun ErrorScreen(message: String, onRetryClick: () -> Unit = {}) {
                 fontWeight = FontWeight.Medium
             )
         }
-    }
-}
-
-@Composable
-fun HomeCarousel(title: String, media: List<TrendingMedia>, modifier: Modifier = Modifier) {
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text(text = title, Modifier.padding(start = MaterialTheme.spacing.medium))
-        LazyRow(Modifier.padding(start = MaterialTheme.spacing.medium)) {
-            items(items = media) {
-                HomeCarouselContent(it)
-            }
-        }
-    }
-}
-
-@Composable
-fun HomeCarouselContent(item: TrendingMedia, modifier: Modifier = Modifier) {
-    Card(modifier.size(160.dp).padding(end = MaterialTheme.spacing.small)) {
-        Text(item.title.toString())
     }
 }

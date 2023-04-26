@@ -3,12 +3,12 @@ package com.raghav.jetstar.data.repository
 import com.raghav.jetstar.data.model.toDomain
 import com.raghav.jetstar.data.sources.remote.MovieService
 import com.raghav.jetstar.domain.entity.trending.TrendingMediaResponse
-import com.raghav.jetstar.domain.repository.MovieRepository
+import com.raghav.jetstar.domain.repository.HomeScreenRepository
 import com.raghav.jetstar.util.Resource
 
-class MovieRepositoryImpl(
+class HomeScreenRepositoryImpl(
     private val movieService: MovieService
-) : MovieRepository {
+) : HomeScreenRepository {
     override suspend fun getTopRatedMovies(): Resource<TrendingMediaResponse> {
         return when (val response = movieService.getTrendingMedia()) {
             is Resource.Error -> {
