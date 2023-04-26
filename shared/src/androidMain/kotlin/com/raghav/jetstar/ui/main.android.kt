@@ -1,4 +1,4 @@
-package com.raghav.jetstar // ktlint-disable filename
+package com.raghav.jetstar.ui // ktlint-disable filename
 
 import androidx.compose.runtime.Composable
 

@@ -3,7 +3,6 @@ package com.raghav.jetstar.ui.home
 import com.raghav.jetstar.data.repository.MovieRepositoryImpl
 import com.raghav.jetstar.router.SavedStateHandle
 import com.raghav.jetstar.router.ViewModel
-import com.raghav.jetstar.ui.HomeScreenState
 import com.raghav.jetstar.util.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,7 +36,7 @@ class HomeScreenVM(private val savedState: SavedStateHandle) : ViewModel() {
                 is Resource.Success -> {
                     _state.update {
                         it.copy(
-                            media = response.data.results
+                            media = response.data.results?.filterNotNull() ?: emptyList()
                         )
                     }
                 }
