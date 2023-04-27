@@ -6,7 +6,6 @@
 </p>
 
 
-
 |  What's shared?   | ViewModel, Data Models, Networking and UI (almost 100%) code is shared |
 |----------------	|------------------------------	|
 |  :arrow_up_down: API   | [TMDB](https://www.themoviedb.org/documentation/api) |
@@ -20,8 +19,8 @@
 #### Android App
 <table style="width:100%">
   <tr>
-    <th>Home</th>
-    <th>Overview Two</th> 
+    <th>Home Screen</th>
+    <th>Overview Screen</th> 
   </tr>
   <tr>
     <td><img src = "art/android_home_screen.png" width=240/></td> 
@@ -32,8 +31,8 @@
 #### iOS App
 <table style="width:100%">
   <tr>
-    <th>Home</th>
-    <th>Overview Two</th> 
+    <th>Home Screen</th>
+    <th>Overview Screen</th> 
   </tr>
   <tr>
     <td><img src = "art/ios_home_screen.png" width=240/></td> 
@@ -45,6 +44,11 @@
 
 
 https://user-images.githubusercontent.com/49483235/234791448-6e790ba8-7906-49e8-a12e-157d0e7a813a.mp4
+
+## How to run the app
+Download Android Studio Electric Eel | 2022.1.1 or above.
+
+Generate API key from [The Movie Database API](https://developers.themoviedb.org/3), place the key in 'local.properties' file as API_KEY="<YOUR_API_KEY_HERE">.
 
 <p align="right">[<a href="#top">Back to top</a>]</p>
 
