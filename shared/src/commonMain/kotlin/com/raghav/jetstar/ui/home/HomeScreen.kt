@@ -9,25 +9,31 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.raghav.jetstar.domain.entity.trending.TrendingMedia
+import com.raghav.jetstar.domain.entity.trending.Movie
 import com.raghav.jetstar.router.AppNavigator
 import com.raghav.jetstar.router.Router
 import com.raghav.jetstar.router.rememberViewModel
 import com.raghav.jetstar.ui.components.ErrorScreen
 import com.raghav.jetstar.ui.components.MovieCarousel
+import com.raghav.jetstar.ui.components.TopActionBar
 import com.raghav.jetstar.ui.spacing
 
 @Composable
 fun HomeScreen(
     router: Router<AppNavigator>,
     modifier: Modifier = Modifier,
-    onMediaSelected: (TrendingMedia) -> Unit = {}
+    onMediaSelected: (Movie) -> Unit = {}
 ) {
     val viewModel: HomeScreenVM =
         rememberViewModel(HomeScreenVM::class) { savedState -> HomeScreenVM(savedState) }
@@ -50,7 +56,7 @@ fun HomeScreen(
 fun HomeContent(
     state: HomeScreenState,
     modifier: Modifier = Modifier,
-    onMediaSelected: (TrendingMedia) -> Unit = {},
+    onMediaSelected: (Movie) -> Unit = {},
     onRetryClick: () -> Unit = {}
 ) {
     state.apply {
@@ -75,46 +81,66 @@ fun HomeContent(
                 onRetryClick()
             }
         } else {
-            val scrollState = rememberScrollState()
-            Column(modifier = modifier.verticalScroll(scrollState)) {
-                if (trendingMovies.isNotEmpty()) {
-                    MovieCarousel(
-                        title = "Trending Movies",
-                        media = trendingMovies
-                    ) { media ->
-                        onMediaSelected(media)
+            val scaffoldState = rememberScaffoldState()
+            Scaffold(
+                scaffoldState = scaffoldState,
+                topBar = {
+                    TopActionBar(
+                        title = "Jetstar",
+                        navigationIcon = {
+                            Icon(
+                                imageVector = Icons.Default.Menu,
+                                contentDescription = null
+                            )
+                        }
+                    )
+                },
+                content = {
+                    val scrollState = rememberScrollState()
+                    Column(modifier = modifier.verticalScroll(scrollState)) {
+                        if (trendingMovies.isNotEmpty()) {
+                            Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
+                            MovieCarousel(
+                                title = "Trending Movies",
+                                media = trendingMovies
+                            ) { media ->
+                                onMediaSelected(media)
+                            }
+                        }
+                        if (popularMovies.isNotEmpty()) {
+                            Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
+                            MovieCarousel(
+                                title = "Popular Movies",
+                                media = popularMovies,
+                                isItemShapeSquare = false
+                            ) { media ->
+                                onMediaSelected(media)
+                            }
+                        }
+                        if (topRatedMovies.isNotEmpty()) {
+                            Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
+                            MovieCarousel(
+                                title = "Top Rated Movies",
+                                media = topRatedMovies
+                            ) { media ->
+                                onMediaSelected(media)
+                            }
+                        }
+                        if (nowPlayingMovies.isNotEmpty()) {
+                            Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
+                            MovieCarousel(
+                                title = "Now Playing Movies",
+                                media = nowPlayingMovies,
+                                isItemShapeSquare = false
+                            ) { media ->
+                                onMediaSelected(media)
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
                     }
-                }
-                if (popularMovies.isNotEmpty()) {
-                    Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
-                    MovieCarousel(
-                        title = "Popular Movies",
-                        media = popularMovies,
-                        isItemShapeSquare = false
-                    ) { media ->
-                        onMediaSelected(media)
-                    }
-                }
-                if (topRatedMovies.isNotEmpty()) {
-                    Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
-                    MovieCarousel(
-                        title = "Top Rated Movies",
-                        media = topRatedMovies
-                    ) { media ->
-                        onMediaSelected(media)
-                    }
-                }
-                if (nowPlayingMovies.isNotEmpty()) {
-                    Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
-                    MovieCarousel(
-                        title = "Now Playing Movies",
-                        media = nowPlayingMovies,
-                        isItemShapeSquare = false
-                    ) { media ->
-                        onMediaSelected(media)
-                    }
-                }
-            }
+                },
+                modifier = Modifier.fillMaxSize()
+            )
         }
     }
 }

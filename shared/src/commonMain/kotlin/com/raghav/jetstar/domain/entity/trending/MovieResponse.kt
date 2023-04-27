@@ -1,8 +1,8 @@
 package com.raghav.jetstar.domain.entity.trending
 
-data class TrendingMediaResponse(
+data class MovieResponse(
     val page: Int?,
-    val results: List<TrendingMedia?>?,
+    val results: List<Movie?>?,
     val totalPages: Int?,
     val totalResults: Int?
 )

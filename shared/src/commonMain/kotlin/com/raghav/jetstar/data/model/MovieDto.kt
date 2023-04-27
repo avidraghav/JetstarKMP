@@ -2,14 +2,14 @@ package com.raghav.jetstar.data.model
 
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
-import com.raghav.jetstar.domain.entity.trending.TrendingMedia
+import com.raghav.jetstar.domain.entity.trending.Movie
 import com.raghav.jetstar.util.Constants
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 @Parcelize
-data class TrendingMediaDto(
+data class MovieDto(
     @SerialName("adult")
     val adult: Boolean?,
     @SerialName("backdrop_path")
@@ -50,7 +50,7 @@ data class TrendingMediaDto(
     val voteCount: Int?
 ) : Parcelable
 
-fun TrendingMediaDto.toDomain(): TrendingMedia = TrendingMedia(
+fun MovieDto.toDomain(): Movie = Movie(
     adult = adult,
     backdropPath = Constants.IMAGE_BASE_URL_W500 + backdropPath,
     firstAirDate = firstAirDate,

@@ -18,16 +18,16 @@ import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.raghav.jetstar.domain.entity.trending.TrendingMedia
+import com.raghav.jetstar.domain.entity.trending.Movie
 import com.raghav.jetstar.ui.spacing
 import com.raghav.jetstar.util.AsyncImageLoader
 
 @Composable
 fun MovieItem(
-    item: TrendingMedia,
+    item: Movie,
     modifier: Modifier = Modifier,
     isShapeSquare: Boolean = true,
-    onItemSelected: (TrendingMedia) -> Unit
+    onItemSelected: (Movie) -> Unit
 ) {
     Box(
         modifier.then(

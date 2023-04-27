@@ -4,7 +4,7 @@ import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 
 @Parcelize
-data class TrendingMedia(
+data class Movie(
     val adult: Boolean?,
     val backdropPath: String?,
     val firstAirDate: String?,

@@ -11,16 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.raghav.jetstar.domain.entity.trending.TrendingMedia
+import com.raghav.jetstar.domain.entity.trending.Movie
 import com.raghav.jetstar.ui.spacing
 
 @Composable
 fun MovieCarousel(
     title: String,
-    media: List<TrendingMedia>,
+    media: List<Movie>,
     modifier: Modifier = Modifier,
     isItemShapeSquare: Boolean = true,
-    onMediaSelected: (TrendingMedia) -> Unit
+    onMediaSelected: (Movie) -> Unit
 ) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text(

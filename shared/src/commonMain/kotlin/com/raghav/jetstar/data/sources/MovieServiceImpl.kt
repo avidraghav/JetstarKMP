@@ -1,6 +1,6 @@
 package com.raghav.jetstar.data.sources
 
-import com.raghav.jetstar.data.model.TrendingMediaResponseDto
+import com.raghav.jetstar.data.model.MovieResponseDto
 import com.raghav.jetstar.data.sources.remote.MovieService
 import com.raghav.jetstar.util.Constants
 import com.raghav.jetstar.util.Resource
@@ -12,7 +12,7 @@ import io.ktor.client.request.url
 class MovieServiceImpl(
     private val client: HttpClient
 ) : MovieService {
-    override suspend fun getTrending(): Resource<TrendingMediaResponseDto> =
+    override suspend fun getTrending(): Resource<MovieResponseDto> =
         safeApiCallHandler {
             client
                 .get {
@@ -22,7 +22,7 @@ class MovieServiceImpl(
                 }
         }
 
-    override suspend fun getPopular(): Resource<TrendingMediaResponseDto> =
+    override suspend fun getPopular(): Resource<MovieResponseDto> =
         safeApiCallHandler {
             client
                 .get {
@@ -32,7 +32,7 @@ class MovieServiceImpl(
                 }
         }
 
-    override suspend fun getTopRated(): Resource<TrendingMediaResponseDto> =
+    override suspend fun getTopRated(): Resource<MovieResponseDto> =
         safeApiCallHandler {
             client
                 .get {
@@ -42,7 +42,7 @@ class MovieServiceImpl(
                 }
         }
 
-    override suspend fun getNowPlaying(): Resource<TrendingMediaResponseDto> = safeApiCallHandler {
+    override suspend fun getNowPlaying(): Resource<MovieResponseDto> = safeApiCallHandler {
         client
             .get {
                 url {

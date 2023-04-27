@@ -1,7 +1,7 @@
 package com.raghav.jetstar.ui.home
 
 import com.raghav.jetstar.data.repository.HomeScreenRepositoryImpl
-import com.raghav.jetstar.domain.entity.trending.TrendingMedia
+import com.raghav.jetstar.domain.entity.trending.Movie
 import com.raghav.jetstar.router.SavedStateHandle
 import com.raghav.jetstar.router.ViewModel
 import com.raghav.jetstar.util.Resource
@@ -27,10 +27,10 @@ class HomeScreenVM(private val savedState: SavedStateHandle) : ViewModel() {
     }
 
     fun fetchHomeScreenData() {
-        var popularMovies = emptyList<TrendingMedia>()
-        var trendingMovies = emptyList<TrendingMedia>()
-        var topRatedMovies = emptyList<TrendingMedia>()
-        var nowPlayingMovies = emptyList<TrendingMedia>()
+        var popularMovies = emptyList<Movie>()
+        var trendingMovies = emptyList<Movie>()
+        var topRatedMovies = emptyList<Movie>()
+        var nowPlayingMovies = emptyList<Movie>()
         _state.update {
             it.copy(
                 isLoading = true
