@@ -99,7 +99,7 @@ fun CardOverViewContent(movie: Movie, modifier: Modifier = Modifier) {
                     modifier = modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
                 ) {
-                    Text("OverView")
+                    Text("Overview")
                     Text(it, fontWeight = FontWeight.Bold)
                 }
             }
