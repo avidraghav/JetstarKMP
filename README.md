@@ -47,7 +47,7 @@ https://user-images.githubusercontent.com/49483235/234791448-6e790ba8-7906-49e8-
 ## How to run the app
 Download Android Studio Electric Eel | 2022.1.1 or above.
 
-Generate API key from [The Movie Database API](https://developers.themoviedb.org/3), place the key in 'local.properties' file as API_KEY="<YOUR_API_KEY_HERE">.
+Generate API key from [The Movie Database API](https://developers.themoviedb.org/3), place the key in 'local.properties' file as API_KEY=<YOUR_API_KEY_HERE>
 
 <p align="right">[<a href="#top">Back to top</a>]</p>
 
