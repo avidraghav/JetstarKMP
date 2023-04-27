@@ -68,7 +68,7 @@ kotlin {
                 api("androidx.core:core-ktx:1.9.0")
 
                 implementation("io.insert-koin:koin-android:$koinVersion")
-//                implementation("io.ktor:ktor-client-android:$ktorVersion")
+                implementation("io.coil-kt:coil-compose:2.3.0")
             }
         }
         val iosX64Main by getting

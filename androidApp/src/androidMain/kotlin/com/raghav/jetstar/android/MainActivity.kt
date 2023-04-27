@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.CompositionLocalProvider
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.decompose.defaultComponentContext
-import com.raghav.jetstar.MainView
 import com.raghav.jetstar.router.LocalComponentContext
+import com.raghav.jetstar.ui.MainView
 
 class MainActivity : AppCompatActivity() {
 

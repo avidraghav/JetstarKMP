@@ -2,25 +2,25 @@ package com.raghav.jetstar.data.model
 
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
-import com.raghav.jetstar.domain.entity.trending.TrendingMediaResponse
+import com.raghav.jetstar.domain.entity.trending.MovieResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 @Parcelize
-data class TrendingMediaResponseDto(
+data class MovieResponseDto(
     @SerialName("page")
     val page: Int?,
     @SerialName("results")
-    val results: List<TrendingMediaDto?>?,
+    val results: List<MovieDto?>?,
     @SerialName("total_pages")
     val totalPages: Int?,
     @SerialName("total_results")
     val totalResults: Int?
 ) : Parcelable
 
-fun TrendingMediaResponseDto.toDomain(): TrendingMediaResponse =
-    TrendingMediaResponse(
+fun MovieResponseDto.toDomain(): MovieResponse =
+    MovieResponse(
         page = page,
         results = results?.map {
             it?.toDomain()
