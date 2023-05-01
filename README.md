@@ -13,6 +13,7 @@
 | 💉 DI                | [Koin](https://insert-koin.io/)                        |             |
 | 🌐 Networking        | [Ktor](https://ktor.io/)                        |
 | :compass: Navigation       | [Decompose](https://arkivanov.github.io/Decompose/) + [Router](https://github.com/xxfast/KRouter)
+| :memo: Logging       | [Napier](https://github.com/AAkira/Napier)
 
 
 ## :iphone: Screenshots
