@@ -32,7 +32,11 @@ fun MovieCarousel(
             Modifier.padding(start = MaterialTheme.spacing.medium)
         ) {
             items(items = media) {
-                MovieItem(item = it, isShapeSquare = isItemShapeSquare) { item ->
+                MovieItem(
+                    item = it,
+                    isShapeSquare = isItemShapeSquare,
+                    modifier = Modifier.fillParentMaxWidth(0.32f)
+                ) { item ->
                     onMediaSelected(item)
                 }
             }
