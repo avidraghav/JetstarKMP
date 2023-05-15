@@ -8,6 +8,7 @@ plugins {
     id("com.github.gmazzo.buildconfig")
     kotlin("plugin.serialization") version "1.8.20"
     id("kotlin-parcelize")
+    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -38,6 +39,7 @@ kotlin {
     val ktorVersion = "2.2.4"
     val koinVersion = "3.2.0"
     val napierVersion = "2.6.1"
+    val sqlDelightVersion = "1.5.5"
 
     sourceSets {
         val commonMain by getting {
@@ -59,6 +61,7 @@ kotlin {
                 api("com.arkivanov.decompose:extensions-compose-jetbrains:2.0.0-compose-experimental-alpha-02")
                 api("com.arkivanov.essenty:parcelable:1.1.0")
                 implementation("io.github.aakira:napier:$napierVersion")
+                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
             }
         }
         val androidMain by getting {
@@ -69,6 +72,7 @@ kotlin {
 
                 implementation("io.insert-koin:koin-android:$koinVersion")
                 implementation("io.coil-kt:coil-compose:2.3.0")
+                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
             }
         }
         val iosX64Main by getting
@@ -81,6 +85,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
             }
         }
     }
