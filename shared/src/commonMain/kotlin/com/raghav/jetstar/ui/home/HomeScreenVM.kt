@@ -48,7 +48,7 @@ class HomeScreenVM(private val savedState: SavedStateHandle) : ViewModel() {
                         }
                     }
                     is Resource.Success -> {
-                        popularMovies = response.data.results?.filterNotNull() ?: emptyList()
+                        popularMovies = response.data
                     }
                 }
             }.invokeOnCompletion {

@@ -19,6 +19,11 @@ data class MovieResponseDto(
     val totalResults: Int?
 ) : Parcelable
 
+fun MovieResponseDto.toDomain2() =
+    results?.map {
+        it?.toDomain()
+    } ?: emptyList()
+
 fun MovieResponseDto.toDomain(): MovieResponse =
     MovieResponse(
         page = page,

@@ -1,0 +1,44 @@
+import java.lang.String;
+import kotlin.collections.List;
+
+CREATE TABLE PopularMovies (
+   adult INTEGER AS Boolean,
+   backdropPath TEXT,
+   firstAirDate TEXT,
+   genreIds TEXT AS List<Int>,
+   id INTEGER,
+   mediaType TEXT,
+   name TEXT,
+   originCountry TEXT AS List<String>,
+   originalLanguage TEXT,
+   originalName TEXT,
+   originalTitle TEXT,
+   overview TEXT,
+   popularity REAL,
+   posterPath TEXT,
+   releaseDate TEXT,
+   title TEXT,
+   video INTEGER AS Boolean,
+   voteAverage REAL,
+   voteCount INTEGER
+);
+
+insertPopularMovie:
+INSERT INTO PopularMovies(
+   adult, backdropPath,firstAirDate, genreIds, id,
+   mediaType, name, originCountry,originalLanguage,originalName,originalTitle,overview,
+   popularity,posterPath,releaseDate, title, video, voteAverage, voteCount
+)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?,
+?,?,?,?,?,?,?,?,?,?,?);
+
+removeAllPopularMovies:
+DELETE FROM PopularMovies;
+
+getPopularMovies:
+SELECT PopularMovies.*
+FROM PopularMovies;
+
+
+
+

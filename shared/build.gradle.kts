@@ -49,7 +49,6 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
-
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:2.0.3")
@@ -117,4 +116,10 @@ properties.load(project.rootProject.file("local.properties").inputStream())
 
 buildConfig {
     buildConfigField("String", "API_KEY", "\"${properties.getProperty("API_KEY")}\"")
+}
+
+sqldelight {
+    database("AppDatabase") {
+        packageName = "com.raghav.jetstar.database"
+    }
 }
