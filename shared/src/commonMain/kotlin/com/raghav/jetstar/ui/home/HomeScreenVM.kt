@@ -48,7 +48,7 @@ class HomeScreenVM(private val savedState: SavedStateHandle) : ViewModel() {
                         }
                     }
                     is Resource.Success -> {
-                        popularMovies = response.data.results?.filterNotNull() ?: emptyList()
+                        popularMovies = response.data
                     }
                 }
             }.invokeOnCompletion {
@@ -68,7 +68,7 @@ class HomeScreenVM(private val savedState: SavedStateHandle) : ViewModel() {
                         }
                     }
                     is Resource.Success -> {
-                        trendingMovies = response.data.results?.filterNotNull() ?: emptyList()
+                        trendingMovies = response.data
                     }
                 }
             }.invokeOnCompletion {
@@ -88,7 +88,7 @@ class HomeScreenVM(private val savedState: SavedStateHandle) : ViewModel() {
                         }
                     }
                     is Resource.Success -> {
-                        topRatedMovies = response.data.results?.filterNotNull() ?: emptyList()
+                        topRatedMovies = response.data
                     }
                 }
             }.invokeOnCompletion {
@@ -108,7 +108,7 @@ class HomeScreenVM(private val savedState: SavedStateHandle) : ViewModel() {
                         }
                     }
                     is Resource.Success -> {
-                        nowPlayingMovies = response.data.results?.filterNotNull() ?: emptyList()
+                        nowPlayingMovies = response.data
                     }
                 }
             }.invokeOnCompletion {

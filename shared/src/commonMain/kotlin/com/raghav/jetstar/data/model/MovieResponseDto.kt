@@ -2,7 +2,6 @@ package com.raghav.jetstar.data.model
 
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
-import com.raghav.jetstar.domain.entity.trending.MovieResponse
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -19,12 +18,7 @@ data class MovieResponseDto(
     val totalResults: Int?
 ) : Parcelable
 
-fun MovieResponseDto.toDomain(): MovieResponse =
-    MovieResponse(
-        page = page,
-        results = results?.map {
-            it?.toDomain()
-        } ?: emptyList(),
-        totalPages = totalPages,
-        totalResults = totalResults
-    )
+fun MovieResponseDto.toDomain() =
+    results?.map {
+        it?.toDomain()
+    } ?: emptyList()

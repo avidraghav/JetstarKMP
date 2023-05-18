@@ -1,0 +1,158 @@
+import java.lang.String;
+import kotlin.collections.List;
+
+CREATE TABLE PopularMovies (
+   adult INTEGER AS Boolean,
+   backdropPath TEXT,
+   firstAirDate TEXT,
+   genreIds TEXT AS List<Int>,
+   id INTEGER,
+   mediaType TEXT,
+   name TEXT,
+   originCountry TEXT AS List<String>,
+   originalLanguage TEXT,
+   originalName TEXT,
+   originalTitle TEXT,
+   overview TEXT,
+   popularity REAL,
+   posterPath TEXT,
+   releaseDate TEXT,
+   title TEXT,
+   video INTEGER AS Boolean,
+   voteAverage REAL,
+   voteCount INTEGER
+);
+
+insertPopularMovie:
+INSERT INTO PopularMovies(
+   adult, backdropPath,firstAirDate, genreIds, id,
+   mediaType, name, originCountry,originalLanguage,originalName,originalTitle,overview,
+   popularity,posterPath,releaseDate, title, video, voteAverage, voteCount
+)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?,
+?,?,?,?,?,?,?,?,?,?,?);
+
+removeAllPopularMovies:
+DELETE FROM PopularMovies;
+
+getPopularMovies:
+SELECT PopularMovies.*
+FROM PopularMovies;
+
+CREATE TABLE TrendingMovies (
+   adult INTEGER AS Boolean,
+   backdropPath TEXT,
+   firstAirDate TEXT,
+   genreIds TEXT AS List<Int>,
+   id INTEGER,
+   mediaType TEXT,
+   name TEXT,
+   originCountry TEXT AS List<String>,
+   originalLanguage TEXT,
+   originalName TEXT,
+   originalTitle TEXT,
+   overview TEXT,
+   popularity REAL,
+   posterPath TEXT,
+   releaseDate TEXT,
+   title TEXT,
+   video INTEGER AS Boolean,
+   voteAverage REAL,
+   voteCount INTEGER
+);
+
+insertTrendingMovie:
+INSERT INTO TrendingMovies(
+   adult, backdropPath,firstAirDate, genreIds, id,
+   mediaType, name, originCountry,originalLanguage,originalName,originalTitle,overview,
+   popularity,posterPath,releaseDate, title, video, voteAverage, voteCount
+)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?,
+?,?,?,?,?,?,?,?,?,?,?);
+
+removeAllTrendingMovies:
+DELETE FROM TrendingMovies;
+
+getTrendingMovies:
+SELECT TrendingMovies.*
+FROM TrendingMovies;
+
+CREATE TABLE TopRatedMovies (
+   adult INTEGER AS Boolean,
+   backdropPath TEXT,
+   firstAirDate TEXT,
+   genreIds TEXT AS List<Int>,
+   id INTEGER,
+   mediaType TEXT,
+   name TEXT,
+   originCountry TEXT AS List<String>,
+   originalLanguage TEXT,
+   originalName TEXT,
+   originalTitle TEXT,
+   overview TEXT,
+   popularity REAL,
+   posterPath TEXT,
+   releaseDate TEXT,
+   title TEXT,
+   video INTEGER AS Boolean,
+   voteAverage REAL,
+   voteCount INTEGER
+);
+
+insertTopRatedMovie:
+INSERT INTO TopRatedMovies(
+   adult, backdropPath,firstAirDate, genreIds, id,
+   mediaType, name, originCountry,originalLanguage,originalName,originalTitle,overview,
+   popularity,posterPath,releaseDate, title, video, voteAverage, voteCount
+)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?,
+?,?,?,?,?,?,?,?,?,?,?);
+
+removeTopRatedMovies:
+DELETE FROM TopRatedMovies;
+
+getTopRatedMovies:
+SELECT TopRatedMovies.*
+FROM TopRatedMovies;
+
+CREATE TABLE NowPlayingMovies (
+   adult INTEGER AS Boolean,
+   backdropPath TEXT,
+   firstAirDate TEXT,
+   genreIds TEXT AS List<Int>,
+   id INTEGER,
+   mediaType TEXT,
+   name TEXT,
+   originCountry TEXT AS List<String>,
+   originalLanguage TEXT,
+   originalName TEXT,
+   originalTitle TEXT,
+   overview TEXT,
+   popularity REAL,
+   posterPath TEXT,
+   releaseDate TEXT,
+   title TEXT,
+   video INTEGER AS Boolean,
+   voteAverage REAL,
+   voteCount INTEGER
+);
+
+insertNowPlayingMovie:
+INSERT INTO NowPlayingMovies(
+   adult, backdropPath,firstAirDate, genreIds, id,
+   mediaType, name, originCountry,originalLanguage,originalName,originalTitle,overview,
+   popularity,posterPath,releaseDate, title, video, voteAverage, voteCount
+)
+VALUES(?, ?, ?, ?, ?, ?, ?, ?,
+?,?,?,?,?,?,?,?,?,?,?);
+
+removeNowPlayingMovies:
+DELETE FROM NowPlayingMovies;
+
+getNowPlayingMovies:
+SELECT NowPlayingMovies.*
+FROM NowPlayingMovies;
+
+
+
+
