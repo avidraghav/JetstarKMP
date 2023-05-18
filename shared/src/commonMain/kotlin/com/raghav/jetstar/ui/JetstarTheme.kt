@@ -15,7 +15,7 @@ fun JetstarTheme(
         darkColors(
             primary = Blue70,
             secondary = PurpleGrey80,
-            surface = Blue10,
+            surface = Transparent,
             background = Black40,
             onBackground = White100,
             onSurface = White90

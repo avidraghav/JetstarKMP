@@ -1,11 +1,17 @@
+@file:OptIn(ExperimentalSoftwareKeyboardApi::class)
+
 package com.raghav.jetstar.ui.home
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
@@ -20,6 +26,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
+import com.moriatsushi.insetsx.safeDrawing
 import com.raghav.jetstar.domain.entity.trending.Movie
 import com.raghav.jetstar.router.AppNavigator
 import com.raghav.jetstar.router.Router
@@ -92,12 +100,19 @@ fun HomeContent(
                                 imageVector = Icons.Default.Menu,
                                 contentDescription = null
                             )
-                        }
+                        },
+                        modifier = Modifier.windowInsetsPadding(
+                            WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)
+                        )
                     )
                 },
                 content = {
                     val scrollState = rememberScrollState()
-                    Column(modifier = modifier.verticalScroll(scrollState)) {
+                    Column(
+                        modifier = modifier.verticalScroll(scrollState).windowInsetsPadding(
+                            WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
+                        )
+                    ) {
                         if (trendingMovies.isNotEmpty()) {
                             Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium))
                             MovieCarousel(
