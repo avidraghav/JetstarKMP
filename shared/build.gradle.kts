@@ -61,6 +61,7 @@ kotlin {
                 api("com.arkivanov.essenty:parcelable:1.1.0")
                 implementation("io.github.aakira:napier:$napierVersion")
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                implementation("com.moriatsushi.insetsx:insetsx:0.1.0-alpha05")
             }
         }
         val androidMain by getting {

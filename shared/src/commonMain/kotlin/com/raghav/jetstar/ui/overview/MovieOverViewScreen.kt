@@ -3,8 +3,12 @@ package com.raghav.jetstar.ui.overview
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
@@ -20,6 +24,8 @@ import androidx.compose.ui.graphics.FilterQuality
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import com.arkivanov.decompose.router.stack.pop
+import com.moriatsushi.insetsx.ExperimentalSoftwareKeyboardApi
+import com.moriatsushi.insetsx.safeDrawing
 import com.raghav.jetstar.domain.entity.trending.Movie
 import com.raghav.jetstar.router.AppNavigator
 import com.raghav.jetstar.router.Router
@@ -27,6 +33,7 @@ import com.raghav.jetstar.ui.components.TopActionBar
 import com.raghav.jetstar.ui.spacing
 import com.raghav.jetstar.util.AsyncImageLoader
 
+@OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
 fun MovieOverViewScreen(
     movie: Movie,
@@ -43,7 +50,10 @@ fun MovieOverViewScreen(
                         contentDescription = null
                     )
                 },
-                onNavigationButtonClicked = { router.pop() }
+                onNavigationButtonClicked = { router.pop() },
+                modifier = Modifier.windowInsetsPadding(
+                    WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)
+                )
             )
         },
         content = {
@@ -55,10 +65,13 @@ fun MovieOverViewScreen(
     )
 }
 
+@OptIn(ExperimentalSoftwareKeyboardApi::class)
 @Composable
 fun CardOverViewContent(movie: Movie, modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize().windowInsetsPadding(
+            WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
+        ),
         verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.medium)
     ) {
         movie.apply {

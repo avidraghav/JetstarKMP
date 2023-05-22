@@ -3,9 +3,11 @@ package com.raghav.jetstar.ui
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.slide
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.router.stack.push
+import com.moriatsushi.insetsx.rememberWindowInsetsController
 import com.raghav.jetstar.router.AppNavigator
 import com.raghav.jetstar.router.RoutedContent
 import com.raghav.jetstar.router.Router
@@ -15,6 +17,14 @@ import com.raghav.jetstar.ui.overview.MovieOverViewScreen
 
 @Composable
 fun App() {
+    val windowInsetsController = rememberWindowInsetsController()
+    LaunchedEffect(Unit) {
+        windowInsetsController?.apply {
+            setStatusBarContentColor(dark = false)
+            setNavigationBarsContentColor(dark = false)
+        }
+    }
+
     JetstarTheme {
         Surface(color = MaterialTheme.colors.surface) {
             val router: Router<AppNavigator> =
