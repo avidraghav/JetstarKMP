@@ -1,8 +1,8 @@
 <div id="top"></div>
 
-# :star: Jetstar KMM
+# :star: Jetstar KMP
 <p align="left"> Jetstar is sample app demonstrating the use of Jetbrain's 
-<a href="https://kotlinlang.org/docs/multiplatform-mobile-getting-started.html">Kotlin Multiplatform for Mobile</a> technology for mobile app development
+<a href="https://kotlinlang.org/docs/multiplatform-mobile-getting-started.html">Kotlin Multiplatform</a> technology for mobile app development
 </p>
 
 
